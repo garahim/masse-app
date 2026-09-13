@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Masse - Cours Interactif</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f0f4f8;
@@ -34,12 +30,12 @@
             border-bottom: 3px solid #3b82f6;
             padding-bottom: 15px;
         }
-        /* Navigation principale */
         .main-nav {
             display: flex;
             gap: 15px;
             margin-bottom: 30px;
             justify-content: center;
+            flex-wrap: wrap;
         }
         .main-nav button {
             padding: 14px 40px;
@@ -57,17 +53,9 @@
             color: white;
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
         }
-        .main-nav button:hover:not(.active) {
-            background: #cbd5e1;
-        }
-        /* Sections */
-        .section {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-        .section.active {
-            display: block;
-        }
+        .main-nav button:hover:not(.active) { background: #cbd5e1; }
+        .section { display: none; animation: fadeIn 0.4s ease; }
+        .section.active { display: block; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -88,15 +76,9 @@
             margin-bottom: 8px;
             font-size: 1.2rem;
         }
-        .explanation p, .explanation ul {
-            margin-bottom: 12px;
-        }
-        .explanation ul {
-            padding-left: 25px;
-        }
-        .explanation li {
-            margin-bottom: 6px;
-        }
+        .explanation p, .explanation ul { margin-bottom: 12px; }
+        .explanation ul { padding-left: 25px; }
+        .explanation li { margin-bottom: 6px; }
         .card {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
@@ -104,9 +86,7 @@
             padding: 20px;
             margin: 15px 0;
         }
-        .card strong {
-            color: #0f172a;
-        }
+        .card strong { color: #0f172a; }
         .image-container {
             display: flex;
             flex-wrap: wrap;
@@ -114,19 +94,110 @@
             justify-content: center;
             margin: 20px 0;
         }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border: 1px solid #e2e8f0;
+        .image-block {
+            flex: 1 1 280px;
+            background: #f1f5f9;
+            border: 2px dashed #94a3b8;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
         }
         .image-caption {
-            text-align: center;
             font-style: italic;
-            color: #64748b;
-            margin-top: 5px;
+            color: #475569;
             font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        /* Représentations visuelles des expériences (sans images externes) */
+        .balance-roberval {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 30px;
+            height: 120px;
+            padding: 10px;
+        }
+        .plateau {
+            width: 80px;
+            height: 8px;
+            background: #334155;
+            border-radius: 4px;
+            position: relative;
+        }
+        .plateau::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 25px;
+            background: #334155;
+        }
+        .pivot {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 30px solid #64748b;
+            margin-bottom: -5px;
+        }
+        .solid-block {
+            width: 40px;
+            height: 25px;
+            background: #b45309;
+            border-radius: 3px;
+            margin: 0 auto 5px;
+        }
+        .mass-block {
+            width: 25px;
+            height: 20px;
+            background: #64748b;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 2px;
+            color: white;
+            font-size: 0.6rem;
+            text-align: center;
+            line-height: 20px;
+        }
+        .electronic-balance {
+            background: #1e293b;
+            color: #4ade80;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            width: 140px;
+            margin: 10px auto;
+            border: 3px solid #64748b;
+        }
+        .eprouvette {
+            width: 50px;
+            height: 120px;
+            border: 3px solid #334155;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            margin: 10px auto;
+            position: relative;
+            background: white;
+        }
+        .eprouvette .liquide {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fbbf24;
+            border-radius: 0 0 5px 5px;
+        }
+        .eprouvette .graduation {
+            position: absolute;
+            right: -3px;
+            width: 15px;
+            height: 2px;
+            background: #334155;
         }
         table {
             width: 100%;
@@ -136,20 +207,15 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            font-size: 0.85rem;
         }
         th, td {
             border: 1px solid #e2e8f0;
-            padding: 12px 15px;
+            padding: 10px 8px;
             text-align: center;
         }
-        th {
-            background: #3b82f6;
-            color: white;
-            font-weight: 600;
-        }
-        tr:nth-child(even) {
-            background: #f8fafc;
-        }
+        th { background: #3b82f6; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f8fafc; }
 
         /* --- SECTION RÉVISION --- */
         .revision-nav {
@@ -170,24 +236,16 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .revision-nav button.active {
-            background: #3b82f6;
-            color: white;
-        }
-        .revision-nav button:hover:not(.active) {
-            background: #eff6ff;
-        }
+        .revision-nav button.active { background: #3b82f6; color: white; }
+        .revision-nav button:hover:not(.active) { background: #eff6ff; }
         .rev-section {
             display: none;
             background: #f8fafc;
             border-radius: 16px;
             padding: 25px;
             border: 1px solid #e2e8f0;
-            animation: fadeIn 0.3s ease;
         }
-        .rev-section.active {
-            display: block;
-        }
+        .rev-section.active { display: block; animation: fadeIn 0.3s ease; }
         .rev-section h2 {
             color: #1e40af;
             margin-bottom: 20px;
@@ -202,10 +260,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.04);
             border-left: 4px solid #3b82f6;
         }
-        .question-item p {
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
+        .question-item p { margin-bottom: 10px; font-weight: 500; }
         .question-item label {
             display: block;
             margin: 8px 0;
@@ -214,23 +269,17 @@
             border-radius: 6px;
             transition: background 0.2s;
         }
-        .question-item label:hover {
-            background: #eff6ff;
-        }
-        .question-item input[type="radio"],
-        .question-item input[type="text"] {
-            margin-right: 10px;
-        }
+        .question-item label:hover { background: #eff6ff; }
+        .question-item input[type="radio"] { margin-right: 10px; }
         .question-item input[type="text"] {
             padding: 8px 12px;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
-            width: 200px;
+            width: 220px;
             font-size: 1rem;
+            max-width: 100%;
         }
-        .btn-check {
-            background: #3b82f6;
-            color: white;
+        .btn-check, .btn-show-answer {
             border: none;
             padding: 8px 20px;
             border-radius: 6px;
@@ -238,25 +287,12 @@
             cursor: pointer;
             margin-top: 8px;
             transition: background 0.2s;
-        }
-        .btn-check:hover {
-            background: #2563eb;
-        }
-        .btn-show-answer {
-            background: #f59e0b;
             color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 8px;
-            margin-left: 8px;
-            transition: background 0.2s;
         }
-        .btn-show-answer:hover {
-            background: #d97706;
-        }
+        .btn-check { background: #3b82f6; }
+        .btn-check:hover { background: #2563eb; }
+        .btn-show-answer { background: #f59e0b; margin-left: 8px; }
+        .btn-show-answer:hover { background: #d97706; }
         .feedback {
             margin-top: 10px;
             font-weight: 600;
@@ -282,26 +318,13 @@
             color: #92400e;
             border: 1px solid #fcd34d;
         }
-        .short-answer-block {
-            margin-top: 10px;
-        }
-        .short-answer-block .answer-display {
-            margin-top: 8px;
-            font-weight: 600;
-            color: #166534;
-            display: none;
-        }
-        .short-answer-block .answer-display.show {
-            display: block;
-        }
-
-        /* Responsive */
         @media (max-width: 600px) {
             .container { padding: 15px; }
             h1 { font-size: 1.6rem; }
             .main-nav button { padding: 10px 20px; font-size: 1rem; }
             .revision-nav button { padding: 8px 14px; font-size: 0.9rem; }
-            .image-container { flex-direction: column; align-items: center; }
+            table { font-size: 0.7rem; }
+            th, td { padding: 6px 3px; }
         }
     </style>
 </head>
@@ -309,10 +332,9 @@
     <div class="container">
         <h1>⚖️ La Masse</h1>
 
-        <!-- Navigation principale -->
         <div class="main-nav">
-            <button id="btn-explication" class="active" onclick="showSection('explication')">📘 Explication</button>
-            <button id="btn-revision" onclick="showSection('revision')">📝 Révision</button>
+            <button id="btn-explication" class="active" data-section="explication">📘 Explication</button>
+            <button id="btn-revision" data-section="revision">📝 Révision</button>
         </div>
 
         <!-- ================= SECTION EXPLICATION ================= -->
@@ -360,13 +382,33 @@
             <h2>3. Mesure de la masse d'un solide</h2>
             <h3>a. Expérience</h3>
             <div class="image-container">
-                <div>
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA ... (image simulée)" alt="Balance de Roberval - Doc 1 et Doc 2" style="width:100%; max-width:500px; background:#e2e8f0; height:200px; display:flex; align-items:center; justify-content:center; color:#64748b; font-style:italic;">
-                    <!-- Note: Les images réelles ne peuvent pas être extraites du PDF. Un placeholder est utilisé. -->
-                    <div style="background:#f1f5f9; padding:20px; border-radius:10px; text-align:center; color:#475569;">
-                        [Image : Balance de Roberval - Doc.1 (équilibre à vide) et Doc.2 (solide + masses marquées)]
+                <div class="image-block">
+                    <h4 style="color:#1e40af; margin-bottom:8px;">Doc. 1 : Équilibre à vide</h4>
+                    <div class="balance-roberval">
+                        <div class="plateau"></div>
+                        <div class="pivot"></div>
+                        <div class="plateau"></div>
                     </div>
-                    <p class="image-caption">Doc.1 : Équilibre à vide | Doc.2 : Solide et masses marquées</p>
+                    <p class="image-caption">La balance est équilibrée sans aucun objet.</p>
+                </div>
+                <div class="image-block">
+                    <h4 style="color:#1e40af; margin-bottom:8px;">Doc. 2 : Solide + masses marquées</h4>
+                    <div class="balance-roberval">
+                        <div style="text-align:center;">
+                            <div class="solid-block"></div>
+                            <div class="plateau"></div>
+                        </div>
+                        <div class="pivot"></div>
+                        <div style="text-align:center;">
+                            <div>
+                                <span class="mass-block">100g</span>
+                                <span class="mass-block">50g</span>
+                                <span class="mass-block">10g</span>
+                            </div>
+                            <div class="plateau"></div>
+                        </div>
+                    </div>
+                    <p class="image-caption">Le solide est équilibré par les masses marquées.</p>
                 </div>
             </div>
 
@@ -378,18 +420,37 @@
                     <li>On place le solide sur l'un des plateaux de la balance, et on rétablit l'équilibre en plaçant les masses marquées (par ordre décroissant) sur l'autre plateau (Doc.2).</li>
                     <li>On calcule la masse du solide qui égale à la somme des masses marquées.</li>
                 </ul>
-                <p><strong>Exemple (Doc.2) :</strong> la masse du corps solide est : <em>m = 50 + 10 + 100 = 160 g</em></p>
+                <p><strong>Exemple (Doc.2) :</strong> la masse du corps solide est : <em>m = 100 + 50 + 10 = 160 g</em></p>
             </div>
 
             <h2>4. Mesure de la masse d'un liquide</h2>
             <h3>a. Expérience</h3>
             <div class="image-container">
-                <div>
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA ... (image simulée)" alt="Balance électronique - Doc 1, 2, 3" style="width:100%; max-width:500px; background:#e2e8f0; height:200px; display:flex; align-items:center; justify-content:center; color:#64748b; font-style:italic;">
-                    <div style="background:#f1f5f9; padding:20px; border-radius:10px; text-align:center; color:#475569;">
-                        [Image : Balance électronique - Doc.1 (0,0 g), Doc.2 (46,3 g), Doc.3 (96,4 g)]
+                <div class="image-block">
+                    <h4 style="color:#1e40af; margin-bottom:8px;">Doc. 1 : Mise à zéro</h4>
+                    <div class="electronic-balance">0,0 g</div>
+                    <p class="image-caption">La balance affiche 0,0 g (bouton TARE).</p>
+                </div>
+                <div class="image-block">
+                    <h4 style="color:#1e40af; margin-bottom:8px;">Doc. 2 : Récipient vide</h4>
+                    <div class="electronic-balance">46,3 g</div>
+                    <div class="eprouvette">
+                        <div class="graduation" style="bottom:25%;"></div>
+                        <div class="graduation" style="bottom:50%;"></div>
+                        <div class="graduation" style="bottom:75%;"></div>
                     </div>
-                    <p class="image-caption">Doc.1 : Tare | Doc.2 : Récipient vide | Doc.3 : Récipient + liquide</p>
+                    <p class="image-caption">Masse du récipient vide : m1 = 46,3 g</p>
+                </div>
+                <div class="image-block">
+                    <h4 style="color:#1e40af; margin-bottom:8px;">Doc. 3 : Récipient + liquide</h4>
+                    <div class="electronic-balance">96,4 g</div>
+                    <div class="eprouvette">
+                        <div class="liquide" style="height:50%;"></div>
+                        <div class="graduation" style="bottom:25%;"></div>
+                        <div class="graduation" style="bottom:50%;"></div>
+                        <div class="graduation" style="bottom:75%;"></div>
+                    </div>
+                    <p class="image-caption">Masse totale : m2 = 96,4 g</p>
                 </div>
             </div>
 
@@ -397,7 +458,7 @@
             <div class="card">
                 <p><strong>• La masse m1 du récipient (Doc.2) est :</strong> m1 = 46,3 g</p>
                 <p><strong>• La masse m2 totale (récipient + liquide) (Doc. 3) est :</strong> m2 = 96,4 g</p>
-                <p><strong>• La masse m du liquide est :</strong> m = m2 - m1 = 96,4 - 46,3 = 50,1 g</p>
+                <p><strong>• La masse m du liquide est :</strong> m = m2 - m1 = 96,4 - 46,3 = <strong>50,1 g</strong></p>
             </div>
 
             <h3>Remarques</h3>
@@ -408,36 +469,63 @@
                     <li>La masse d'un corps ne dépend pas de sa forme.</li>
                 </ul>
             </div>
+
+            <h2>5. Exercice d'application : Chez le vendeur de fruits</h2>
+            <div class="image-container">
+                <div class="image-block">
+                    <h4>🍎 Pomme</h4>
+                    <div class="electronic-balance">220,00 g</div>
+                </div>
+                <div class="image-block">
+                    <h4>🍐🍎 Poire + Pomme</h4>
+                    <div class="electronic-balance">360,00 g</div>
+                </div>
+                <div class="image-block">
+                    <h4>🍐🍌 Poire + Banane</h4>
+                    <div class="electronic-balance">270,00 g</div>
+                </div>
+            </div>
+            <div class="card">
+                <p><strong>Résolution :</strong></p>
+                <ul>
+                    <li>Masse de la pomme = <strong>220 g</strong></li>
+                    <li>Masse de la poire = 360 - 220 = <strong>140 g</strong></li>
+                    <li>Masse de la banane = 270 - 140 = <strong>130 g</strong></li>
+                </ul>
+            </div>
+
+            <h2>6. Exercice : Mesure de la masse d'un liquide</h2>
+            <div class="card">
+                <p><strong>1) Masse de l'éprouvette :</strong> 36,00 g</p>
+                <p><strong>2) Masse de l'ensemble {éprouvette + liquide} :</strong> 84,00 g</p>
+                <p><strong>3) Masse du liquide :</strong> m = 84,00 - 36,00 = <strong>48,00 g</strong></p>
+            </div>
         </div>
 
         <!-- ================= SECTION RÉVISION ================= -->
         <div id="revision" class="section">
             <div class="revision-nav">
-                <button class="active" onclick="showRevSection('vrai-faux')">✅ Vrai ou Faux</button>
-                <button onclick="showRevSection('qcm')">🔘 QCM</button>
-                <button onclick="showRevSection('completer')">✏️ Compléter</button>
-                <button onclick="showRevSection('courte')">💬 Réponse courte</button>
+                <button class="active" data-rev="vrai-faux">✅ Vrai ou Faux</button>
+                <button data-rev="qcm">🔘 QCM</button>
+                <button data-rev="completer">✏️ Compléter</button>
+                <button data-rev="courte">💬 Réponse courte</button>
             </div>
 
-            <!-- Vrai ou Faux -->
             <div id="vrai-faux" class="rev-section active">
                 <h2>Vrai ou Faux</h2>
                 <div id="vf-container"></div>
             </div>
 
-            <!-- QCM -->
             <div id="qcm" class="rev-section">
                 <h2>Choix Multiple</h2>
                 <div id="qcm-container"></div>
             </div>
 
-            <!-- Compléter -->
             <div id="completer" class="rev-section">
                 <h2>Compléter les phrases</h2>
                 <div id="comp-container"></div>
             </div>
 
-            <!-- Réponse courte -->
             <div id="courte" class="rev-section">
                 <h2>Réponse courte</h2>
                 <div id="courte-container"></div>
@@ -447,72 +535,65 @@
 
     <script>
         // --- Navigation principale ---
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            document.querySelectorAll('.main-nav button').forEach(b => b.classList.remove('active'));
-            if (sectionId === 'explication') {
-                document.getElementById('btn-explication').classList.add('active');
-            } else {
-                document.getElementById('btn-revision').classList.add('active');
-            }
-        }
+        document.querySelectorAll('.main-nav button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const sectionId = this.dataset.section;
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+                document.querySelectorAll('.main-nav button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
 
         // --- Navigation révision ---
-        function showRevSection(revId) {
-            document.querySelectorAll('.rev-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(revId).classList.add('active');
-            document.querySelectorAll('.revision-nav button').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-        }
+        document.querySelectorAll('.revision-nav button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const revId = this.dataset.rev;
+                document.querySelectorAll('.rev-section').forEach(s => s.classList.remove('active'));
+                document.getElementById(revId).classList.add('active');
+                document.querySelectorAll('.revision-nav button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
 
-        // --- Données des questions ---
+        // --- Données ---
         const vraiFauxData = [
             { question: "La masse d'un corps exprime la quantité de matière qu'il contient.", answer: true },
             { question: "L'unité internationale de masse est le gramme (g).", answer: false, explanation: "L'unité internationale est le kilogramme (Kg)." },
             { question: "La masse d'un corps dépend de sa forme.", answer: false, explanation: "La masse ne dépend pas de la forme." },
             { question: "Le bouton « TARE » sert à remettre à zéro la balance électronique.", answer: true },
-            { question: "La balance de Roberval est plus précise que la balance électronique.", answer: false, explanation: "C'est la balance électronique qui est plus précise." }
+            { question: "La balance de Roberval est plus précise que la balance électronique.", answer: false, explanation: "C'est la balance électronique qui est plus précise." },
+            { question: "12 Kg = 12000 g.", answer: true },
+            { question: "1 tonne = 100 kg.", answer: false, explanation: "1 tonne = 1000 kg." }
         ];
 
         const qcmData = [
-            {
-                question: "Quel est le symbole de la masse ?",
-                options: ["m", "M", "Kg", "g"],
-                correct: 0
-            },
-            {
-                question: "Quelle est l'unité de masse dans le système international ?",
-                options: ["gramme (g)", "kilogramme (Kg)", "tonne (t)", "milligramme (mg)"],
-                correct: 1
-            },
-            {
-                question: "Pour mesurer la masse d'un solide avec une balance de Roberval, on place les masses marquées :",
-                options: ["par ordre croissant", "par ordre décroissant", "au hasard", "uniquement les plus grandes"],
-                correct: 1
-            },
-            {
-                question: "Si m1 = 46,3 g et m2 = 96,4 g, quelle est la masse du liquide ?",
-                options: ["50,1 g", "142,7 g", "46,3 g", "96,4 g"],
-                correct: 0
-            }
+            { question: "Quel est le symbole de la masse ?", options: ["m", "M", "Kg", "g"], correct: 0 },
+            { question: "Quelle est l'unité de masse dans le système international ?", options: ["gramme (g)", "kilogramme (Kg)", "tonne (t)", "milligramme (mg)"], correct: 1 },
+            { question: "Pour mesurer la masse d'un solide avec une balance de Roberval, on place les masses marquées :", options: ["par ordre croissant", "par ordre décroissant", "au hasard", "uniquement les plus grandes"], correct: 1 },
+            { question: "Si m1 = 46,3 g et m2 = 96,4 g, quelle est la masse du liquide ?", options: ["50,1 g", "142,7 g", "46,3 g", "96,4 g"], correct: 0 },
+            { question: "Quel instrument utilise-t-on pour mesurer une masse avec plus de précision ?", options: ["Balance de Roberval", "Balance électronique", "Éprouvette", "Règle"], correct: 1 },
+            { question: "560 g = ? mg", options: ["5600 mg", "56000 mg", "560000 mg", "5600000 mg"], correct: 2 }
         ];
 
         const compData = [
             { text: "La masse d'un corps exprime la ________ de matière que contient ce corps.", answer: "quantité" },
             { text: "Dans le système international, l'unité de masse est le ________.", answer: "kilogramme" },
-            { text: "La masse du solide dans le Doc.2 est : m = 50 + 10 + 100 = ________ g.", answer: "160" },
-            { text: "La masse m du liquide est : m = m2 - m1 = 96,4 - 46,3 = ________ g.", answer: "50,1" }
+            { text: "La masse du solide dans le Doc.2 est : m = 100 + 50 + 10 = ________ g.", answer: "160" },
+            { text: "La masse m du liquide est : m = m2 - m1 = 96,4 - 46,3 = ________ g.", answer: "50,1" },
+            { text: "L'utilisation du bouton « TARE » sert à remettre à ________ la balance électronique.", answer: "zéro" }
         ];
 
         const courteData = [
             { question: "Quelle est la formule pour calculer la masse d'un liquide à partir de m1 et m2 ?", answer: "m = m2 - m1" },
             { question: "Que signifie le sigle « Kg » ?", answer: "Kilogramme" },
             { question: "Quel instrument utilise-t-on pour mesurer une masse avec plus de précision ?", answer: "La balance électronique" },
-            { question: "Convertir 12 Kg en g.", answer: "12000 g" }
+            { question: "Convertir 12 Kg en g.", answer: "12000 g" },
+            { question: "Convertir 450 g en kg.", answer: "0,45 kg" },
+            { question: "Quelle est la masse d'un corps qui ne dépend pas de sa forme ?", answer: "La masse" }
         ];
 
-        // --- Rendu Vrai/Faux ---
+        // --- Vrai/Faux ---
         function renderVraiFaux() {
             const container = document.getElementById('vf-container');
             container.innerHTML = '';
@@ -523,44 +604,16 @@
                     <p>${index + 1}. ${item.question}</p>
                     <label><input type="radio" name="vf-${index}" value="true"> Vrai</label>
                     <label><input type="radio" name="vf-${index}" value="false"> Faux</label>
-                    <button class="btn-check" onclick="checkVF(${index})">Vérifier</button>
-                    <button class="btn-show-answer" onclick="showVFAnswer(${index})">Voir la réponse</button>
+                    <br>
+                    <button class="btn-check" data-action="check-vf" data-index="${index}">Vérifier</button>
+                    <button class="btn-show-answer" data-action="show-vf" data-index="${index}">Voir la réponse</button>
                     <div id="vf-feedback-${index}" class="feedback"></div>
                 `;
                 container.appendChild(div);
             });
         }
 
-        function checkVF(index) {
-            const selected = document.querySelector(`input[name="vf-${index}"]:checked`);
-            const feedback = document.getElementById(`vf-feedback-${index}`);
-            if (!selected) {
-                feedback.className = 'feedback incorrect';
-                feedback.textContent = 'Veuillez sélectionner une réponse.';
-                return;
-            }
-            const isCorrect = (selected.value === 'true') === vraiFauxData[index].answer;
-            if (isCorrect) {
-                feedback.className = 'feedback correct';
-                feedback.textContent = '✅ Correct !';
-            } else {
-                feedback.className = 'feedback incorrect';
-                feedback.textContent = '❌ Incorrect. Essayez encore.';
-            }
-        }
-
-        function showVFAnswer(index) {
-            const feedback = document.getElementById(`vf-feedback-${index}`);
-            const correct = vraiFauxData[index].answer ? 'Vrai' : 'Faux';
-            let msg = `La bonne réponse est : ${correct}.`;
-            if (vraiFauxData[index].explanation) {
-                msg += ` ${vraiFauxData[index].explanation}`;
-            }
-            feedback.className = 'feedback answer-reveal';
-            feedback.textContent = msg;
-        }
-
-        // --- Rendu QCM ---
+        // --- QCM ---
         function renderQCM() {
             const container = document.getElementById('qcm-container');
             container.innerHTML = '';
@@ -574,40 +627,16 @@
                 div.innerHTML = `
                     <p>${index + 1}. ${item.question}</p>
                     ${optionsHTML}
-                    <button class="btn-check" onclick="checkQCM(${index})">Vérifier</button>
-                    <button class="btn-show-answer" onclick="showQCMAnswer(${index})">Voir la réponse</button>
+                    <br>
+                    <button class="btn-check" data-action="check-qcm" data-index="${index}">Vérifier</button>
+                    <button class="btn-show-answer" data-action="show-qcm" data-index="${index}">Voir la réponse</button>
                     <div id="qcm-feedback-${index}" class="feedback"></div>
                 `;
                 container.appendChild(div);
             });
         }
 
-        function checkQCM(index) {
-            const selected = document.querySelector(`input[name="qcm-${index}"]:checked`);
-            const feedback = document.getElementById(`qcm-feedback-${index}`);
-            if (!selected) {
-                feedback.className = 'feedback incorrect';
-                feedback.textContent = 'Veuillez sélectionner une réponse.';
-                return;
-            }
-            const isCorrect = parseInt(selected.value) === qcmData[index].correct;
-            if (isCorrect) {
-                feedback.className = 'feedback correct';
-                feedback.textContent = '✅ Correct !';
-            } else {
-                feedback.className = 'feedback incorrect';
-                feedback.textContent = '❌ Incorrect. Essayez encore.';
-            }
-        }
-
-        function showQCMAnswer(index) {
-            const feedback = document.getElementById(`qcm-feedback-${index}`);
-            const correctOpt = qcmData[index].options[qcmData[index].correct];
-            feedback.className = 'feedback answer-reveal';
-            feedback.textContent = `La bonne réponse est : ${correctOpt}`;
-        }
-
-        // --- Rendu Compléter ---
+        // --- Compléter ---
         function renderComp() {
             const container = document.getElementById('comp-container');
             container.innerHTML = '';
@@ -617,34 +646,16 @@
                 div.innerHTML = `
                     <p>${index + 1}. ${item.text}</p>
                     <input type="text" id="comp-input-${index}" placeholder="Votre réponse...">
-                    <button class="btn-check" onclick="checkComp(${index})">Vérifier</button>
-                    <button class="btn-show-answer" onclick="showCompAnswer(${index})">Voir la réponse</button>
+                    <br>
+                    <button class="btn-check" data-action="check-comp" data-index="${index}">Vérifier</button>
+                    <button class="btn-show-answer" data-action="show-comp" data-index="${index}">Voir la réponse</button>
                     <div id="comp-feedback-${index}" class="feedback"></div>
                 `;
                 container.appendChild(div);
             });
         }
 
-        function checkComp(index) {
-            const input = document.getElementById(`comp-input-${index}`).value.trim().toLowerCase();
-            const feedback = document.getElementById(`comp-feedback-${index}`);
-            const correct = compData[index].answer.toLowerCase();
-            if (input === correct) {
-                feedback.className = 'feedback correct';
-                feedback.textContent = '✅ Correct !';
-            } else {
-                feedback.className = 'feedback incorrect';
-                feedback.textContent = '❌ Incorrect. Essayez encore.';
-            }
-        }
-
-        function showCompAnswer(index) {
-            const feedback = document.getElementById(`comp-feedback-${index}`);
-            feedback.className = 'feedback answer-reveal';
-            feedback.textContent = `La bonne réponse est : ${compData[index].answer}`;
-        }
-
-        // --- Rendu Réponse courte ---
+        // --- Réponse courte ---
         function renderCourte() {
             const container = document.getElementById('courte-container');
             container.innerHTML = '';
@@ -653,36 +664,107 @@
                 div.className = 'question-item';
                 div.innerHTML = `
                     <p>${index + 1}. ${item.question}</p>
-                    <div class="short-answer-block">
-                        <input type="text" id="courte-input-${index}" placeholder="Votre réponse...">
-                        <button class="btn-check" onclick="checkCourte(${index})">Vérifier</button>
-                        <button class="btn-show-answer" onclick="showCourteAnswer(${index})">Voir la réponse</button>
-                        <div id="courte-feedback-${index}" class="feedback"></div>
-                    </div>
+                    <input type="text" id="courte-input-${index}" placeholder="Votre réponse...">
+                    <br>
+                    <button class="btn-check" data-action="check-courte" data-index="${index}">Vérifier</button>
+                    <button class="btn-show-answer" data-action="show-courte" data-index="${index}">Voir la réponse</button>
+                    <div id="courte-feedback-${index}" class="feedback"></div>
                 `;
                 container.appendChild(div);
             });
         }
 
-        function checkCourte(index) {
-            const input = document.getElementById(`courte-input-${index}`).value.trim().toLowerCase();
-            const feedback = document.getElementById(`courte-feedback-${index}`);
-            const correct = courteData[index].answer.toLowerCase();
-            // Tolérance pour les réponses courtes
-            if (input === correct || input.includes(correct) || correct.includes(input)) {
-                feedback.className = 'feedback correct';
-                feedback.textContent = '✅ Correct !';
-            } else {
-                feedback.className = 'feedback incorrect';
-                feedback.textContent = '❌ Incorrect. Essayez encore.';
-            }
-        }
+        // --- Gestion des clics (délégation d'événements) ---
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('button[data-action]');
+            if (!btn) return;
+            const action = btn.dataset.action;
+            const index = parseInt(btn.dataset.index);
 
-        function showCourteAnswer(index) {
-            const feedback = document.getElementById(`courte-feedback-${index}`);
-            feedback.className = 'feedback answer-reveal';
-            feedback.textContent = `La bonne réponse est : ${courteData[index].answer}`;
-        }
+            if (action === 'check-vf') {
+                const selected = document.querySelector(`input[name="vf-${index}"]:checked`);
+                const feedback = document.getElementById(`vf-feedback-${index}`);
+                if (!selected) {
+                    feedback.className = 'feedback incorrect';
+                    feedback.textContent = 'Veuillez sélectionner une réponse.';
+                    return;
+                }
+                const isCorrect = (selected.value === 'true') === vraiFauxData[index].answer;
+                feedback.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+                feedback.textContent = isCorrect ? '✅ Correct !' : '❌ Incorrect. Essayez encore.';
+            }
+
+            if (action === 'show-vf') {
+                const feedback = document.getElementById(`vf-feedback-${index}`);
+                const correct = vraiFauxData[index].answer ? 'Vrai' : 'Faux';
+                let msg = `La bonne réponse est : ${correct}.`;
+                if (vraiFauxData[index].explanation) msg += ` ${vraiFauxData[index].explanation}`;
+                feedback.className = 'feedback answer-reveal';
+                feedback.textContent = msg;
+            }
+
+            if (action === 'check-qcm') {
+                const selected = document.querySelector(`input[name="qcm-${index}"]:checked`);
+                const feedback = document.getElementById(`qcm-feedback-${index}`);
+                if (!selected) {
+                    feedback.className = 'feedback incorrect';
+                    feedback.textContent = 'Veuillez sélectionner une réponse.';
+                    return;
+                }
+                const isCorrect = parseInt(selected.value) === qcmData[index].correct;
+                feedback.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+                feedback.textContent = isCorrect ? '✅ Correct !' : '❌ Incorrect. Essayez encore.';
+            }
+
+            if (action === 'show-qcm') {
+                const feedback = document.getElementById(`qcm-feedback-${index}`);
+                const correctOpt = qcmData[index].options[qcmData[index].correct];
+                feedback.className = 'feedback answer-reveal';
+                feedback.textContent = `La bonne réponse est : ${correctOpt}`;
+            }
+
+            if (action === 'check-comp') {
+                const input = document.getElementById(`comp-input-${index}`).value.trim().toLowerCase();
+                const feedback = document.getElementById(`comp-feedback-${index}`);
+                const correct = compData[index].answer.toLowerCase();
+                if (input === correct) {
+                    feedback.className = 'feedback correct';
+                    feedback.textContent = '✅ Correct !';
+                } else {
+                    feedback.className = 'feedback incorrect';
+                    feedback.textContent = '❌ Incorrect. Essayez encore.';
+                }
+            }
+
+            if (action === 'show-comp') {
+                const feedback = document.getElementById(`comp-feedback-${index}`);
+                feedback.className = 'feedback answer-reveal';
+                feedback.textContent = `La bonne réponse est : ${compData[index].answer}`;
+            }
+
+            if (action === 'check-courte') {
+                const input = document.getElementById(`courte-input-${index}`).value.trim().toLowerCase();
+                const feedback = document.getElementById(`courte-feedback-${index}`);
+                const correct = courteData[index].answer.toLowerCase();
+                // Normalisation : suppression des espaces et des unités pour comparaison souple
+                const normalize = (s) => s.replace(/\s+/g, '').replace(/,/g, '.');
+                const inputNorm = normalize(input);
+                const correctNorm = normalize(correct);
+                if (inputNorm === correctNorm || inputNorm.includes(correctNorm) || correctNorm.includes(inputNorm)) {
+                    feedback.className = 'feedback correct';
+                    feedback.textContent = '✅ Correct !';
+                } else {
+                    feedback.className = 'feedback incorrect';
+                    feedback.textContent = '❌ Incorrect. Essayez encore.';
+                }
+            }
+
+            if (action === 'show-courte') {
+                const feedback = document.getElementById(`courte-feedback-${index}`);
+                feedback.className = 'feedback answer-reveal';
+                feedback.textContent = `La bonne réponse est : ${courteData[index].answer}`;
+            }
+        });
 
         // Initialisation
         window.onload = function() {
