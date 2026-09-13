@@ -19,7 +19,6 @@
             background: white;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
             padding: 25px 30px 40px;
         }
         h1 {
@@ -60,8 +59,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* --- SECTION EXPLICATION --- */
         .explanation h2 {
             color: #1e40af;
             margin-top: 25px;
@@ -95,109 +92,29 @@
             margin: 20px 0;
         }
         .image-block {
-            flex: 1 1 280px;
-            background: #f1f5f9;
-            border: 2px dashed #94a3b8;
+            flex: 1 1 300px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 15px;
             text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .image-block svg {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: zoom-in;
+            transition: transform 0.2s;
+        }
+        .image-block svg:hover {
+            transform: scale(1.02);
         }
         .image-caption {
             font-style: italic;
             color: #475569;
             font-size: 0.9rem;
             margin-top: 10px;
-        }
-        /* Représentations visuelles des expériences (sans images externes) */
-        .balance-roberval {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 30px;
-            height: 120px;
-            padding: 10px;
-        }
-        .plateau {
-            width: 80px;
-            height: 8px;
-            background: #334155;
-            border-radius: 4px;
-            position: relative;
-        }
-        .plateau::before {
-            content: '';
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 25px;
-            background: #334155;
-        }
-        .pivot {
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-bottom: 30px solid #64748b;
-            margin-bottom: -5px;
-        }
-        .solid-block {
-            width: 40px;
-            height: 25px;
-            background: #b45309;
-            border-radius: 3px;
-            margin: 0 auto 5px;
-        }
-        .mass-block {
-            width: 25px;
-            height: 20px;
-            background: #64748b;
-            border-radius: 3px;
-            display: inline-block;
-            margin: 2px;
-            color: white;
-            font-size: 0.6rem;
-            text-align: center;
-            line-height: 20px;
-        }
-        .electronic-balance {
-            background: #1e293b;
-            color: #4ade80;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            font-family: 'Courier New', monospace;
-            font-size: 1.5rem;
-            font-weight: bold;
-            width: 140px;
-            margin: 10px auto;
-            border: 3px solid #64748b;
-        }
-        .eprouvette {
-            width: 50px;
-            height: 120px;
-            border: 3px solid #334155;
-            border-top: none;
-            border-radius: 0 0 8px 8px;
-            margin: 10px auto;
-            position: relative;
-            background: white;
-        }
-        .eprouvette .liquide {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #fbbf24;
-            border-radius: 0 0 5px 5px;
-        }
-        .eprouvette .graduation {
-            position: absolute;
-            right: -3px;
-            width: 15px;
-            height: 2px;
-            background: #334155;
         }
         table {
             width: 100%;
@@ -217,7 +134,6 @@
         th { background: #3b82f6; color: white; font-weight: 600; }
         tr:nth-child(even) { background: #f8fafc; }
 
-        /* --- SECTION RÉVISION --- */
         .revision-nav {
             display: flex;
             flex-wrap: wrap;
@@ -352,28 +268,15 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>tonne</th>
-                            <th>quintal</th>
-                            <th>kilogramme</th>
-                            <th>hectogramme</th>
-                            <th>décagramme</th>
-                            <th>gramme</th>
-                            <th>décigramme</th>
-                            <th>centigramme</th>
-                            <th>milligramme</th>
+                            <th>tonne</th><th>quintal</th><th>kilogramme</th><th>hectogramme</th>
+                            <th>décagramme</th><th>gramme</th><th>décigramme</th>
+                            <th>centigramme</th><th>milligramme</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>t</td>
-                            <td>q</td>
-                            <td>kg</td>
-                            <td>hg</td>
-                            <td>dag</td>
-                            <td>g</td>
-                            <td>dg</td>
-                            <td>cg</td>
-                            <td>mg</td>
+                            <td>t</td><td>q</td><td>kg</td><td>hg</td><td>dag</td>
+                            <td>g</td><td>dg</td><td>cg</td><td>mg</td>
                         </tr>
                     </tbody>
                 </table>
@@ -383,32 +286,61 @@
             <h3>a. Expérience</h3>
             <div class="image-container">
                 <div class="image-block">
-                    <h4 style="color:#1e40af; margin-bottom:8px;">Doc. 1 : Équilibre à vide</h4>
-                    <div class="balance-roberval">
-                        <div class="plateau"></div>
-                        <div class="pivot"></div>
-                        <div class="plateau"></div>
-                    </div>
-                    <p class="image-caption">La balance est équilibrée sans aucun objet.</p>
-                </div>
-                <div class="image-block">
-                    <h4 style="color:#1e40af; margin-bottom:8px;">Doc. 2 : Solide + masses marquées</h4>
-                    <div class="balance-roberval">
-                        <div style="text-align:center;">
-                            <div class="solid-block"></div>
-                            <div class="plateau"></div>
-                        </div>
-                        <div class="pivot"></div>
-                        <div style="text-align:center;">
-                            <div>
-                                <span class="mass-block">100g</span>
-                                <span class="mass-block">50g</span>
-                                <span class="mass-block">10g</span>
-                            </div>
-                            <div class="plateau"></div>
-                        </div>
-                    </div>
-                    <p class="image-caption">Le solide est équilibré par les masses marquées.</p>
+                    <h4 style="color:#1e40af; margin-bottom:8px;">Balance de Roberval</h4>
+                    <!-- IMAGE SVG 1 : Balance de Roberval -->
+                    <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="700" height="280" fill="#f8fafc"/>
+                        <!-- Grille de fond -->
+                        <defs>
+                            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+                            </pattern>
+                        </defs>
+                        <rect width="700" height="280" fill="url(#grid)"/>
+                        
+                        <!-- === DOC 1 : Balance à vide === -->
+                        <text x="150" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">Doc. 1</text>
+                        <!-- Fléau (support vertical) -->
+                        <rect x="148" y="80" width="4" height="90" fill="#334155"/>
+                        <polygon points="140,170 160,170 150,155" fill="#334155"/>
+                        <!-- Plateaux -->
+                        <polygon points="60,170 240,170 220,180 80,180" fill="#94a3b8" stroke="#334155" stroke-width="2"/>
+                        <polygon points="60,170 80,180 80,175 60,165" fill="#64748b"/>
+                        <polygon points="240,170 220,180 220,175 240,165" fill="#64748b"/>
+                        <line x1="150" y1="80" x2="100" y2="170" stroke="#334155" stroke-width="2"/>
+                        <line x1="150" y1="80" x2="200" y2="170" stroke="#334155" stroke-width="2"/>
+                        
+                        <!-- === DOC 2 : Balance avec solide et masses === -->
+                        <text x="500" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">Doc. 2</text>
+                        <!-- Fléau -->
+                        <rect x="498" y="80" width="4" height="90" fill="#334155"/>
+                        <polygon points="490,170 510,170 500,155" fill="#334155"/>
+                        <!-- Plateaux -->
+                        <polygon points="380,170 560,170 540,180 400,180" fill="#94a3b8" stroke="#334155" stroke-width="2"/>
+                        <polygon points="380,170 400,180 400,175 380,165" fill="#64748b"/>
+                        <polygon points="560,170 540,180 540,175 560,165" fill="#64748b"/>
+                        <line x1="500" y1="80" x2="430" y2="170" stroke="#334155" stroke-width="2"/>
+                        <line x1="500" y1="80" x2="570" y2="170" stroke="#334155" stroke-width="2"/>
+                        
+                        <!-- Solide brun sur le plateau gauche -->
+                        <rect x="430" y="145" width="40" height="25" fill="#b45309" stroke="#78350f" stroke-width="1.5" rx="2"/>
+                        <!-- Texte "Corps solide" -->
+                        <text x="450" y="120" text-anchor="middle" font-size="11" fill="#1e293b" font-weight="bold">Corps solide</text>
+                        <line x1="450" y1="122" x2="450" y2="143" stroke="#1e293b" stroke-width="1"/>
+                        <polygon points="447,122 450,118 453,122" fill="#1e293b"/>
+                        
+                        <!-- Masses marquées sur le plateau droit -->
+                        <!-- Masse 100g -->
+                        <rect x="510" y="130" width="35" height="40" fill="#64748b" stroke="#334155" stroke-width="1.5"/>
+                        <text x="527" y="155" text-anchor="middle" font-size="9" fill="white" font-weight="bold">100g</text>
+                        <!-- Masse 50g -->
+                        <rect x="548" y="140" width="28" height="30" fill="#64748b" stroke="#334155" stroke-width="1.5"/>
+                        <text x="562" y="160" text-anchor="middle" font-size="9" fill="white" font-weight="bold">50g</text>
+                        <!-- Masse 10g (petite) -->
+                        <rect x="580" y="150" width="20" height="20" fill="#64748b" stroke="#334155" stroke-width="1.5"/>
+                        <text x="590" y="164" text-anchor="middle" font-size="8" fill="white" font-weight="bold">10g</text>
+                    </svg>
+                    <p class="image-caption">Doc.1 : Équilibre à vide | Doc.2 : Solide + masses marquées (100g, 50g, 10g)</p>
                 </div>
             </div>
 
@@ -427,30 +359,87 @@
             <h3>a. Expérience</h3>
             <div class="image-container">
                 <div class="image-block">
-                    <h4 style="color:#1e40af; margin-bottom:8px;">Doc. 1 : Mise à zéro</h4>
-                    <div class="electronic-balance">0,0 g</div>
-                    <p class="image-caption">La balance affiche 0,0 g (bouton TARE).</p>
-                </div>
-                <div class="image-block">
-                    <h4 style="color:#1e40af; margin-bottom:8px;">Doc. 2 : Récipient vide</h4>
-                    <div class="electronic-balance">46,3 g</div>
-                    <div class="eprouvette">
-                        <div class="graduation" style="bottom:25%;"></div>
-                        <div class="graduation" style="bottom:50%;"></div>
-                        <div class="graduation" style="bottom:75%;"></div>
-                    </div>
-                    <p class="image-caption">Masse du récipient vide : m1 = 46,3 g</p>
-                </div>
-                <div class="image-block">
-                    <h4 style="color:#1e40af; margin-bottom:8px;">Doc. 3 : Récipient + liquide</h4>
-                    <div class="electronic-balance">96,4 g</div>
-                    <div class="eprouvette">
-                        <div class="liquide" style="height:50%;"></div>
-                        <div class="graduation" style="bottom:25%;"></div>
-                        <div class="graduation" style="bottom:50%;"></div>
-                        <div class="graduation" style="bottom:75%;"></div>
-                    </div>
-                    <p class="image-caption">Masse totale : m2 = 96,4 g</p>
+                    <h4 style="color:#1e40af; margin-bottom:8px;">Balance électronique + Éprouvette</h4>
+                    <!-- IMAGE SVG 2 : Balance électronique avec 3 documents -->
+                    <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="700" height="280" fill="#f8fafc"/>
+                        <defs>
+                            <pattern id="grid2" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+                            </pattern>
+                        </defs>
+                        <rect width="700" height="280" fill="url(#grid2)"/>
+                        
+                        <!-- === DOC 1 : Balance à 0,0 g === -->
+                        <text x="110" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">Doc. 1</text>
+                        <!-- Corps de la balance -->
+                        <rect x="40" y="180" width="140" height="40" fill="#3b82f6" rx="5"/>
+                        <!-- Écran -->
+                        <rect x="55" y="188" width="70" height="24" fill="white" rx="3"/>
+                        <text x="90" y="205" text-anchor="middle" font-size="12" fill="#1e293b" font-weight="bold">0,0 g</text>
+                        <!-- Bouton On/off -->
+                        <circle cx="140" cy="195" r="5" fill="#1e293b"/>
+                        <circle cx="140" cy="210" r="5" fill="#1e293b"/>
+                        <text x="30" y="195" font-size="10" fill="#1e293b" font-weight="bold">On/off</text>
+                        <text x="30" y="215" font-size="10" fill="#1e293b" font-weight="bold">Tare</text>
+                        <!-- Étiquettes -->
+                        <rect x="105" y="188" width="28" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="119" y="198" text-anchor="middle" font-size="7" fill="#1e293b">ON/OFF</text>
+                        <rect x="105" y="202" width="28" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="119" y="212" text-anchor="middle" font-size="7" fill="#1e293b">TARE</text>
+                        <text x="110" y="245" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">Doc. 1</text>
+                        
+                        <!-- === DOC 2 : Balance à 46,3 g avec éprouvette vide === -->
+                        <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">Doc. 2</text>
+                        <!-- Éprouvette vide -->
+                        <rect x="320" y="100" width="50" height="80" fill="none" stroke="#334155" stroke-width="2"/>
+                        <!-- Graduations -->
+                        <line x1="320" y1="120" x2="335" y2="120" stroke="#334155" stroke-width="1.5"/>
+                        <text x="340" y="124" font-size="9" fill="#334155">60</text>
+                        <line x1="320" y1="135" x2="335" y2="135" stroke="#334155" stroke-width="1.5"/>
+                        <text x="340" y="139" font-size="9" fill="#334155">40</text>
+                        <line x1="320" y1="150" x2="335" y2="150" stroke="#334155" stroke-width="1.5"/>
+                        <text x="340" y="154" font-size="9" fill="#334155">20</text>
+                        <text x="345" y="95" text-anchor="middle" font-size="10" fill="#334155" font-weight="bold">ml</text>
+                        <!-- Balance -->
+                        <rect x="280" y="180" width="140" height="40" fill="#3b82f6" rx="5"/>
+                        <rect x="295" y="188" width="70" height="24" fill="white" rx="3"/>
+                        <text x="330" y="205" text-anchor="middle" font-size="12" fill="#1e293b" font-weight="bold">46,3 g</text>
+                        <circle cx="380" cy="195" r="5" fill="#1e293b"/>
+                        <circle cx="380" cy="210" r="5" fill="#1e293b"/>
+                        <rect x="345" y="188" width="28" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="359" y="198" text-anchor="middle" font-size="7" fill="#1e293b">ON/OFF</text>
+                        <rect x="345" y="202" width="28" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="359" y="212" text-anchor="middle" font-size="7" fill="#1e293b">TARE</text>
+                        <text x="350" y="245" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">Doc. 2</text>
+                        
+                        <!-- === DOC 3 : Balance à 96,4 g avec éprouvette remplie === -->
+                        <text x="590" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">Doc. 3</text>
+                        <!-- Éprouvette avec liquide -->
+                        <rect x="560" y="100" width="50" height="80" fill="none" stroke="#334155" stroke-width="2"/>
+                        <!-- Liquide jaune -->
+                        <rect x="562" y="140" width="46" height="38" fill="#fbbf24"/>
+                        <!-- Graduations -->
+                        <line x1="560" y1="120" x2="575" y2="120" stroke="#334155" stroke-width="1.5"/>
+                        <text x="580" y="124" font-size="9" fill="#334155">60</text>
+                        <line x1="560" y1="135" x2="575" y2="135" stroke="#334155" stroke-width="1.5"/>
+                        <text x="580" y="139" font-size="9" fill="#334155">40</text>
+                        <line x1="560" y1="150" x2="575" y2="150" stroke="#334155" stroke-width="1.5"/>
+                        <text x="580" y="154" font-size="9" fill="#334155">20</text>
+                        <text x="585" y="95" text-anchor="middle" font-size="10" fill="#334155" font-weight="bold">ml</text>
+                        <!-- Balance -->
+                        <rect x="520" y="180" width="140" height="40" fill="#3b82f6" rx="5"/>
+                        <rect x="535" y="188" width="70" height="24" fill="white" rx="3"/>
+                        <text x="570" y="205" text-anchor="middle" font-size="12" fill="#1e293b" font-weight="bold">96,4 g</text>
+                        <circle cx="620" cy="195" r="5" fill="#1e293b"/>
+                        <circle cx="620" cy="210" r="5" fill="#1e293b"/>
+                        <rect x="585" y="188" width="28" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="599" y="198" text-anchor="middle" font-size="7" fill="#1e293b">ON/OFF</text>
+                        <rect x="585" y="202" width="28" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="599" y="212" text-anchor="middle" font-size="7" fill="#1e293b">TARE</text>
+                        <text x="590" y="245" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">Doc. 3</text>
+                    </svg>
+                    <p class="image-caption">Doc.1 : 0,0 g | Doc.2 : 46,3 g (récipient vide) | Doc.3 : 96,4 g (récipient + liquide)</p>
                 </div>
             </div>
 
@@ -473,16 +462,80 @@
             <h2>5. Exercice d'application : Chez le vendeur de fruits</h2>
             <div class="image-container">
                 <div class="image-block">
-                    <h4>🍎 Pomme</h4>
-                    <div class="electronic-balance">220,00 g</div>
-                </div>
-                <div class="image-block">
-                    <h4>🍐🍎 Poire + Pomme</h4>
-                    <div class="electronic-balance">360,00 g</div>
-                </div>
-                <div class="image-block">
-                    <h4>🍐🍌 Poire + Banane</h4>
-                    <div class="electronic-balance">270,00 g</div>
+                    <h4 style="color:#1e40af; margin-bottom:8px;">Exercice : Vendeur de fruits</h4>
+                    <!-- IMAGE SVG 3 : Les fruits -->
+                    <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="700" height="220" fill="#f8fafc"/>
+                        <defs>
+                            <pattern id="grid3" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+                            </pattern>
+                        </defs>
+                        <rect width="700" height="220" fill="url(#grid3)"/>
+                        
+                        <!-- === Balance 1 : Pomme seule === -->
+                        <rect x="40" y="100" width="180" height="100" fill="white" stroke="#dc2626" stroke-width="2" rx="5"/>
+                        <!-- Pomme -->
+                        <circle cx="130" cy="65" r="28" fill="#dc2626"/>
+                        <circle cx="130" cy="65" r="28" fill="none" stroke="#991b1b" stroke-width="1"/>
+                        <!-- Reflet -->
+                        <ellipse cx="120" cy="55" rx="8" ry="12" fill="#f87171" opacity="0.6"/>
+                        <!-- Feuille -->
+                        <path d="M 130 40 Q 145 35 150 45 Q 145 50 130 45 Z" fill="#16a34a"/>
+                        <!-- Queue -->
+                        <line x1="130" y1="40" x2="130" y2="32" stroke="#78350f" stroke-width="2"/>
+                        <!-- Balance électronique -->
+                        <rect x="55" y="130" width="150" height="55" fill="#3b82f6" rx="5"/>
+                        <rect x="70" y="140" width="90" height="30" fill="white" rx="3"/>
+                        <text x="115" y="160" text-anchor="middle" font-size="16" fill="#1e293b" font-weight="bold">220,00 g</text>
+                        <rect x="165" y="140" width="32" height="14" fill="#e2e8f0" rx="2"/>
+                        <text x="181" y="150" text-anchor="middle" font-size="7" fill="#1e293b">ON/OFF</text>
+                        <rect x="165" y="156" width="32" height="14" fill="#e2e8f0" rx="2"/>
+                        <text x="181" y="166" text-anchor="middle" font-size="7" fill="#1e293b">TARE</text>
+                        
+                        <!-- === Balance 2 : Poire + Pomme === -->
+                        <rect x="260" y="100" width="180" height="100" fill="white" stroke="#dc2626" stroke-width="2" rx="5"/>
+                        <!-- Poire -->
+                        <ellipse cx="330" cy="70" rx="25" ry="32" fill="#fbbf24"/>
+                        <ellipse cx="330" cy="70" rx="25" ry="32" fill="none" stroke="#d97706" stroke-width="1"/>
+                        <!-- Reflet poire -->
+                        <ellipse cx="320" cy="60" rx="6" ry="10" fill="#fde68a" opacity="0.6"/>
+                        <!-- Queue poire -->
+                        <line x1="330" y1="40" x2="328" y2="32" stroke="#78350f" stroke-width="2"/>
+                        <!-- Pomme -->
+                        <circle cx="365" cy="75" r="22" fill="#dc2626"/>
+                        <ellipse cx="358" cy="68" rx="6" ry="9" fill="#f87171" opacity="0.6"/>
+                        <path d="M 365 55 Q 375 52 378 58 Q 375 62 365 58 Z" fill="#16a34a"/>
+                        <!-- Balance électronique -->
+                        <rect x="275" y="130" width="150" height="55" fill="#3b82f6" rx="5"/>
+                        <rect x="290" y="140" width="90" height="30" fill="white" rx="3"/>
+                        <text x="335" y="160" text-anchor="middle" font-size="16" fill="#1e293b" font-weight="bold">360,00 g</text>
+                        <rect x="385" y="140" width="32" height="14" fill="#e2e8f0" rx="2"/>
+                        <text x="401" y="150" text-anchor="middle" font-size="7" fill="#1e293b">ON/OFF</text>
+                        <rect x="385" y="156" width="32" height="14" fill="#e2e8f0" rx="2"/>
+                        <text x="401" y="166" text-anchor="middle" font-size="7" fill="#1e293b">TARE</text>
+                        
+                        <!-- === Balance 3 : Poire + Banane === -->
+                        <rect x="480" y="100" width="180" height="100" fill="white" stroke="#dc2626" stroke-width="2" rx="5"/>
+                        <!-- Poire -->
+                        <ellipse cx="545" cy="70" rx="25" ry="32" fill="#fbbf24"/>
+                        <ellipse cx="545" cy="70" rx="25" ry="32" fill="none" stroke="#d97706" stroke-width="1"/>
+                        <ellipse cx="535" cy="60" rx="6" ry="10" fill="#fde68a" opacity="0.6"/>
+                        <line x1="545" y1="40" x2="543" y2="32" stroke="#78350f" stroke-width="2"/>
+                        <!-- Banane -->
+                        <path d="M 580 75 Q 600 55 620 70 Q 625 80 615 90 Q 600 95 590 90 Q 580 85 580 75 Z" fill="#facc15" stroke="#ca8a04" stroke-width="1.5"/>
+                        <!-- Détails banane -->
+                        <line x1="590" y1="80" x2="610" y2="80" stroke="#ca8a04" stroke-width="0.8"/>
+                        <!-- Balance électronique -->
+                        <rect x="495" y="130" width="150" height="55" fill="#3b82f6" rx="5"/>
+                        <rect x="510" y="140" width="90" height="30" fill="white" rx="3"/>
+                        <text x="555" y="160" text-anchor="middle" font-size="16" fill="#1e293b" font-weight="bold">270,00 g</text>
+                        <rect x="605" y="140" width="32" height="14" fill="#e2e8f0" rx="2"/>
+                        <text x="621" y="150" text-anchor="middle" font-size="7" fill="#1e293b">ON/OFF</text>
+                        <rect x="605" y="156" width="32" height="14" fill="#e2e8f0" rx="2"/>
+                        <text x="621" y="166" text-anchor="middle" font-size="7" fill="#1e293b">TARE</text>
+                    </svg>
+                    <p class="image-caption">Pomme (220g) | Poire + Pomme (360g) | Poire + Banane (270g)</p>
                 </div>
             </div>
             <div class="card">
@@ -495,6 +548,76 @@
             </div>
 
             <h2>6. Exercice : Mesure de la masse d'un liquide</h2>
+            <div class="image-container">
+                <div class="image-block">
+                    <h4 style="color:#1e40af; margin-bottom:8px;">Exercice 3 : Éprouvette + Liquide</h4>
+                    <!-- IMAGE SVG 4 : Éprouvette et balance -->
+                    <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="700" height="280" fill="#f8fafc"/>
+                        <defs>
+                            <pattern id="grid4" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+                            </pattern>
+                        </defs>
+                        <rect width="700" height="280" fill="url(#grid4)"/>
+                        
+                        <!-- === DOC 1 : Balance à 00,00 g === -->
+                        <text x="110" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">Doc. 1</text>
+                        <rect x="40" y="150" width="140" height="50" fill="#3b82f6" rx="5"/>
+                        <rect x="55" y="160" width="80" height="30" fill="white" rx="3"/>
+                        <text x="95" y="180" text-anchor="middle" font-size="14" fill="#1e293b" font-weight="bold">00,00 g</text>
+                        <rect x="140" y="162" width="32" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="156" y="171" text-anchor="middle" font-size="6" fill="#1e293b">ON/OFF</text>
+                        <rect x="140" y="178" width="32" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="156" y="187" text-anchor="middle" font-size="6" fill="#1e293b">TARE</text>
+                        <text x="110" y="225" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">Doc. 1</text>
+                        
+                        <!-- === DOC 2 : Éprouvette vide sur balance === -->
+                        <text x="350" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">Doc. 2</text>
+                        <!-- Éprouvette vide -->
+                        <rect x="325" y="60" width="50" height="90" fill="none" stroke="#334155" stroke-width="2"/>
+                        <line x1="325" y1="80" x2="340" y2="80" stroke="#334155" stroke-width="1.5"/>
+                        <text x="345" y="84" font-size="10" fill="#334155">150</text>
+                        <line x1="325" y1="100" x2="340" y2="100" stroke="#334155" stroke-width="1.5"/>
+                        <text x="345" y="104" font-size="10" fill="#334155">100</text>
+                        <line x1="325" y1="120" x2="340" y2="120" stroke="#334155" stroke-width="1.5"/>
+                        <text x="345" y="124" font-size="10" fill="#334155">50</text>
+                        <text x="350" y="55" text-anchor="middle" font-size="11" fill="#334155" font-weight="bold">mL</text>
+                        <!-- Balance -->
+                        <rect x="280" y="150" width="140" height="50" fill="#3b82f6" rx="5"/>
+                        <rect x="295" y="160" width="80" height="30" fill="white" rx="3"/>
+                        <text x="335" y="180" text-anchor="middle" font-size="14" fill="#1e293b" font-weight="bold">36,00 g</text>
+                        <rect x="380" y="162" width="32" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="396" y="171" text-anchor="middle" font-size="6" fill="#1e293b">ON/OFF</text>
+                        <rect x="380" y="178" width="32" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="396" y="187" text-anchor="middle" font-size="6" fill="#1e293b">TARE</text>
+                        <text x="350" y="225" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">Doc. 2</text>
+                        
+                        <!-- === DOC 3 : Éprouvette avec liquide sur balance === -->
+                        <text x="590" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">Doc. 3</text>
+                        <!-- Éprouvette avec liquide -->
+                        <rect x="565" y="60" width="50" height="90" fill="none" stroke="#334155" stroke-width="2"/>
+                        <rect x="567" y="115" width="46" height="33" fill="#fbbf24"/>
+                        <line x1="565" y1="80" x2="580" y2="80" stroke="#334155" stroke-width="1.5"/>
+                        <text x="585" y="84" font-size="10" fill="#334155">150</text>
+                        <line x1="565" y1="100" x2="580" y2="100" stroke="#334155" stroke-width="1.5"/>
+                        <text x="585" y="104" font-size="10" fill="#334155">100</text>
+                        <line x1="565" y1="120" x2="580" y2="120" stroke="#334155" stroke-width="1.5"/>
+                        <text x="585" y="124" font-size="10" fill="#334155">50</text>
+                        <text x="590" y="55" text-anchor="middle" font-size="11" fill="#334155" font-weight="bold">mL</text>
+                        <!-- Balance -->
+                        <rect x="520" y="150" width="140" height="50" fill="#3b82f6" rx="5"/>
+                        <rect x="535" y="160" width="80" height="30" fill="white" rx="3"/>
+                        <text x="575" y="180" text-anchor="middle" font-size="14" fill="#1e293b" font-weight="bold">84,00 g</text>
+                        <rect x="620" y="162" width="32" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="636" y="171" text-anchor="middle" font-size="6" fill="#1e293b">ON/OFF</text>
+                        <rect x="620" y="178" width="32" height="12" fill="#e2e8f0" rx="2"/>
+                        <text x="636" y="187" text-anchor="middle" font-size="6" fill="#1e293b">TARE</text>
+                        <text x="590" y="225" text-anchor="middle" font-size="13" font-weight="bold" fill="#1e293b">Doc. 3</text>
+                    </svg>
+                    <p class="image-caption">Doc.1 : 00,00 g | Doc.2 : 36,00 g (éprouvette vide) | Doc.3 : 84,00 g (éprouvette + liquide)</p>
+                </div>
+            </div>
             <div class="card">
                 <p><strong>1) Masse de l'éprouvette :</strong> 36,00 g</p>
                 <p><strong>2) Masse de l'ensemble {éprouvette + liquide} :</strong> 84,00 g</p>
@@ -515,17 +638,14 @@
                 <h2>Vrai ou Faux</h2>
                 <div id="vf-container"></div>
             </div>
-
             <div id="qcm" class="rev-section">
                 <h2>Choix Multiple</h2>
                 <div id="qcm-container"></div>
             </div>
-
             <div id="completer" class="rev-section">
                 <h2>Compléter les phrases</h2>
                 <div id="comp-container"></div>
             </div>
-
             <div id="courte" class="rev-section">
                 <h2>Réponse courte</h2>
                 <div id="courte-container"></div>
@@ -534,7 +654,6 @@
     </div>
 
     <script>
-        // --- Navigation principale ---
         document.querySelectorAll('.main-nav button').forEach(btn => {
             btn.addEventListener('click', function() {
                 const sectionId = this.dataset.section;
@@ -545,7 +664,6 @@
             });
         });
 
-        // --- Navigation révision ---
         document.querySelectorAll('.revision-nav button').forEach(btn => {
             btn.addEventListener('click', function() {
                 const revId = this.dataset.rev;
@@ -556,7 +674,6 @@
             });
         });
 
-        // --- Données ---
         const vraiFauxData = [
             { question: "La masse d'un corps exprime la quantité de matière qu'il contient.", answer: true },
             { question: "L'unité internationale de masse est le gramme (g).", answer: false, explanation: "L'unité internationale est le kilogramme (Kg)." },
@@ -566,7 +683,6 @@
             { question: "12 Kg = 12000 g.", answer: true },
             { question: "1 tonne = 100 kg.", answer: false, explanation: "1 tonne = 1000 kg." }
         ];
-
         const qcmData = [
             { question: "Quel est le symbole de la masse ?", options: ["m", "M", "Kg", "g"], correct: 0 },
             { question: "Quelle est l'unité de masse dans le système international ?", options: ["gramme (g)", "kilogramme (Kg)", "tonne (t)", "milligramme (mg)"], correct: 1 },
@@ -575,25 +691,21 @@
             { question: "Quel instrument utilise-t-on pour mesurer une masse avec plus de précision ?", options: ["Balance de Roberval", "Balance électronique", "Éprouvette", "Règle"], correct: 1 },
             { question: "560 g = ? mg", options: ["5600 mg", "56000 mg", "560000 mg", "5600000 mg"], correct: 2 }
         ];
-
         const compData = [
             { text: "La masse d'un corps exprime la ________ de matière que contient ce corps.", answer: "quantité" },
             { text: "Dans le système international, l'unité de masse est le ________.", answer: "kilogramme" },
-            { text: "La masse du solide dans le Doc.2 est : m = 100 + 50 + 10 = ________ g.", answer: "160" },
+            { text: "La masse du solide dans le Doc.2 est : m = 50 + 10 + 100 = ________ g.", answer: "160" },
             { text: "La masse m du liquide est : m = m2 - m1 = 96,4 - 46,3 = ________ g.", answer: "50,1" },
             { text: "L'utilisation du bouton « TARE » sert à remettre à ________ la balance électronique.", answer: "zéro" }
         ];
-
         const courteData = [
             { question: "Quelle est la formule pour calculer la masse d'un liquide à partir de m1 et m2 ?", answer: "m = m2 - m1" },
             { question: "Que signifie le sigle « Kg » ?", answer: "Kilogramme" },
             { question: "Quel instrument utilise-t-on pour mesurer une masse avec plus de précision ?", answer: "La balance électronique" },
             { question: "Convertir 12 Kg en g.", answer: "12000 g" },
-            { question: "Convertir 450 g en kg.", answer: "0,45 kg" },
-            { question: "Quelle est la masse d'un corps qui ne dépend pas de sa forme ?", answer: "La masse" }
+            { question: "Convertir 450 g en kg.", answer: "0,45 kg" }
         ];
 
-        // --- Vrai/Faux ---
         function renderVraiFaux() {
             const container = document.getElementById('vf-container');
             container.innerHTML = '';
@@ -612,8 +724,6 @@
                 container.appendChild(div);
             });
         }
-
-        // --- QCM ---
         function renderQCM() {
             const container = document.getElementById('qcm-container');
             container.innerHTML = '';
@@ -635,8 +745,6 @@
                 container.appendChild(div);
             });
         }
-
-        // --- Compléter ---
         function renderComp() {
             const container = document.getElementById('comp-container');
             container.innerHTML = '';
@@ -654,8 +762,6 @@
                 container.appendChild(div);
             });
         }
-
-        // --- Réponse courte ---
         function renderCourte() {
             const container = document.getElementById('courte-container');
             container.innerHTML = '';
@@ -674,7 +780,6 @@
             });
         }
 
-        // --- Gestion des clics (délégation d'événements) ---
         document.addEventListener('click', function(e) {
             const btn = e.target.closest('button[data-action]');
             if (!btn) return;
@@ -684,16 +789,11 @@
             if (action === 'check-vf') {
                 const selected = document.querySelector(`input[name="vf-${index}"]:checked`);
                 const feedback = document.getElementById(`vf-feedback-${index}`);
-                if (!selected) {
-                    feedback.className = 'feedback incorrect';
-                    feedback.textContent = 'Veuillez sélectionner une réponse.';
-                    return;
-                }
+                if (!selected) { feedback.className = 'feedback incorrect'; feedback.textContent = 'Veuillez sélectionner une réponse.'; return; }
                 const isCorrect = (selected.value === 'true') === vraiFauxData[index].answer;
                 feedback.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
                 feedback.textContent = isCorrect ? '✅ Correct !' : '❌ Incorrect. Essayez encore.';
             }
-
             if (action === 'show-vf') {
                 const feedback = document.getElementById(`vf-feedback-${index}`);
                 const correct = vraiFauxData[index].answer ? 'Vrai' : 'Faux';
@@ -702,63 +802,42 @@
                 feedback.className = 'feedback answer-reveal';
                 feedback.textContent = msg;
             }
-
             if (action === 'check-qcm') {
                 const selected = document.querySelector(`input[name="qcm-${index}"]:checked`);
                 const feedback = document.getElementById(`qcm-feedback-${index}`);
-                if (!selected) {
-                    feedback.className = 'feedback incorrect';
-                    feedback.textContent = 'Veuillez sélectionner une réponse.';
-                    return;
-                }
+                if (!selected) { feedback.className = 'feedback incorrect'; feedback.textContent = 'Veuillez sélectionner une réponse.'; return; }
                 const isCorrect = parseInt(selected.value) === qcmData[index].correct;
                 feedback.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
                 feedback.textContent = isCorrect ? '✅ Correct !' : '❌ Incorrect. Essayez encore.';
             }
-
             if (action === 'show-qcm') {
                 const feedback = document.getElementById(`qcm-feedback-${index}`);
-                const correctOpt = qcmData[index].options[qcmData[index].correct];
                 feedback.className = 'feedback answer-reveal';
-                feedback.textContent = `La bonne réponse est : ${correctOpt}`;
+                feedback.textContent = `La bonne réponse est : ${qcmData[index].options[qcmData[index].correct]}`;
             }
-
             if (action === 'check-comp') {
                 const input = document.getElementById(`comp-input-${index}`).value.trim().toLowerCase();
                 const feedback = document.getElementById(`comp-feedback-${index}`);
                 const correct = compData[index].answer.toLowerCase();
-                if (input === correct) {
-                    feedback.className = 'feedback correct';
-                    feedback.textContent = '✅ Correct !';
-                } else {
-                    feedback.className = 'feedback incorrect';
-                    feedback.textContent = '❌ Incorrect. Essayez encore.';
-                }
+                feedback.className = (input === correct) ? 'feedback correct' : 'feedback incorrect';
+                feedback.textContent = (input === correct) ? '✅ Correct !' : '❌ Incorrect. Essayez encore.';
             }
-
             if (action === 'show-comp') {
                 const feedback = document.getElementById(`comp-feedback-${index}`);
                 feedback.className = 'feedback answer-reveal';
                 feedback.textContent = `La bonne réponse est : ${compData[index].answer}`;
             }
-
             if (action === 'check-courte') {
                 const input = document.getElementById(`courte-input-${index}`).value.trim().toLowerCase();
                 const feedback = document.getElementById(`courte-feedback-${index}`);
                 const correct = courteData[index].answer.toLowerCase();
-                // Normalisation : suppression des espaces et des unités pour comparaison souple
                 const normalize = (s) => s.replace(/\s+/g, '').replace(/,/g, '.');
                 const inputNorm = normalize(input);
                 const correctNorm = normalize(correct);
-                if (inputNorm === correctNorm || inputNorm.includes(correctNorm) || correctNorm.includes(inputNorm)) {
-                    feedback.className = 'feedback correct';
-                    feedback.textContent = '✅ Correct !';
-                } else {
-                    feedback.className = 'feedback incorrect';
-                    feedback.textContent = '❌ Incorrect. Essayez encore.';
-                }
+                const ok = inputNorm === correctNorm || inputNorm.includes(correctNorm) || correctNorm.includes(inputNorm);
+                feedback.className = ok ? 'feedback correct' : 'feedback incorrect';
+                feedback.textContent = ok ? '✅ Correct !' : '❌ Incorrect. Essayez encore.';
             }
-
             if (action === 'show-courte') {
                 const feedback = document.getElementById(`courte-feedback-${index}`);
                 feedback.className = 'feedback answer-reveal';
@@ -766,7 +845,6 @@
             }
         });
 
-        // Initialisation
         window.onload = function() {
             renderVraiFaux();
             renderQCM();
